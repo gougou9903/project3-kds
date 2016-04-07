@@ -1,0 +1,130 @@
+#include<stdio.h>
+#include<stdint.h>
+#include<math.h>
+
+char* itoa(int num,char*str,int radix);
+void reverse(char *str, int len);
+int intToStr(int x, char str[], int d);
+void ftoa(float n, char *res, int afterpoint);
+
+typedef struct ex {
+    int8_t var1 __attribute__ ((aligned (4)));
+    int32_t var2 __attribute__ ((aligned (4)));
+    int8_t var3 __attribute__ ((aligned (4)));
+}__attribute__((aligned (16))) ex_t;
+
+int main(void) {
+//	int number = 123456;
+//	char string[25];
+//	itoa(number,string,10);
+//	printf("integer=%d string=%s\n",number,string);
+//	return 0;
+
+//	char res[20];
+//	float n = 1.123456;
+//	ftoa(n, res, 4);
+//	printf("\n\"%s\"\n", res);
+//	return 0;
+
+	ex_t example;
+	printf("%d",sizeof(example));
+}
+
+char* itoa(int num,char*str,int radix)
+{/*索引表*/
+char index[]="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+unsigned unum;/*中间变量*/
+int i=0,j,k;
+/*确定unum的值*/
+if(radix==10&&num<0)/*十进制负数*/
+{
+unum=(unsigned)-num;
+str[i++]='-';
+}
+else unum=(unsigned)num;/*其他情况*/
+/*转换*/
+do{
+str[i++]=index[unum % (unsigned)radix];
+unum/=radix;
+}while(unum);
+str[i]='\0';
+/*逆序*/
+if(str[0]=='-')k=1;/*十进制负数*/
+else k=0;
+char temp;
+for(j=k;j<=(i-1)/2;j++)
+{
+temp=str[j];
+str[j]=str[i-1+k-j];
+str[i-1+k-j]=temp;
+}
+return str;
+}
+
+// reverses a string 'str' of length 'len'
+void reverse(char *str, int len)
+{
+	int i = 0;
+	if(str[0] == '-') i = 1;
+    int j=len-1, temp;
+    while (i<j)
+    {
+        temp = str[i];
+        str[i] = str[j];
+        str[j] = temp;
+        i++; j--;
+    }
+}
+
+// Converts a given integer x to string str[].  d is the number
+// of digits required in output. If d is more than the number
+// of digits in x, then 0s are added at the beginning.
+int intToStr(int x, char str[], int d)
+{
+	int unum = x;
+   int i = 0;
+   if(x < 0){
+	   str[i++] = '-';
+	   unum = -x;
+   }
+   while (unum)
+   {
+       str[i++] = (unum%10) + '0';
+       unum = unum/10;
+   }
+
+   // If number of digits required is more, then
+   // add 0s at the beginning
+   while (i < d)
+       str[i++] = '0';
+
+   reverse(str, i);
+   str[i] = '\0'; //i == length
+   return i;
+}
+
+// Converts a floating point number to string.
+void ftoa(float n, char *res, int afterpoint)
+{
+    // Extract integer part
+    int ipart = (int)n;
+
+    // Extract floating part
+    float fpart = n - (float)ipart;
+    if(fpart < 0) fpart = -fpart;
+    // convert integer part to string
+    int i = intToStr(ipart, res, 0);
+
+    // check for display option after point
+    if (afterpoint != 0)
+    {
+        res[i] = '.';  // add dot
+
+        // Get the value of fraction part upto given no.
+        // of points after dot. The third parameter is needed
+        // to handle cases like 233.007
+        fpart = fpart * pow(10, afterpoint);
+
+        intToStr((int)fpart, res + i + 1, afterpoint);
+    }
+}

@@ -1,0 +1,52 @@
+16:07:15 **** Build of configuration Debug for project CTest ****
+make all 
+Building file: ../src/CTest.c
+Invoking: GCC C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/CTest.d" -MT"src/CTest.d" -o "src/CTest.o" "../src/CTest.c"
+../src/CTest.c:8:5: error: unknown type name 'int8_t'; did you mean '__int8_t'?
+    int8_t var1 __attribute__ ((aligned (8)));
+    ^~~~~~
+    __int8_t
+/usr/include/i386/_types.h:37:24: note: '__int8_t' declared here
+typedef __signed char           __int8_t;
+                                ^
+../src/CTest.c:9:5: error: unknown type name 'int32_t'; did you mean '__int32_t'?
+    int32_t var2 __attribute__ ((aligned (8)));
+    ^~~~~~~
+    __int32_t
+/usr/include/i386/_types.h:44:15: note: '__int32_t' declared here
+typedef int                     __int32_t;
+                                ^
+../src/CTest.c:10:5: error: unknown type name 'int8_t'; did you mean '__int8_t'?
+    int8_t var3 __attribute__ ((aligned (8)));
+    ^~~~~~
+    __int8_t
+/usr/include/i386/_types.h:37:24: note: '__int8_t' declared here
+typedef __signed char           __int8_t;
+                                ^
+../src/CTest.c:14:14: error: unknown type name 'int8_t'; did you mean '__int8_t'?
+static const int8_t conVar;
+             ^~~~~~
+             __int8_t
+/usr/include/i386/_types.h:37:24: note: '__int8_t' declared here
+typedef __signed char           __int8_t;
+                                ^
+../src/CTest.c:15:14: error: unknown type name 'int16_t'; did you mean '__int16_t'?
+static const int16_t conVar2 = 0;
+             ^~~~~~~
+             __int16_t
+/usr/include/i386/_types.h:42:17: note: '__int16_t' declared here
+typedef short                   __int16_t;
+                                ^
+../src/CTest.c:16:14: error: unknown type name 'int32_t'; did you mean '__int32_t'?
+static const int32_t conVar3 = 200;
+             ^~~~~~~
+             __int32_t
+/usr/include/i386/_types.h:44:15: note: '__int32_t' declared here
+typedef int                     __int32_t;
+                                ^
+6 errors generated.
+make: *** [src/CTest.o] Error 1
+
+16:07:15 Build Finished (took 118ms)
+

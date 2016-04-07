@@ -1,0 +1,9 @@
+//reference :
+//http://www.geeksforgeeks.org/convert-floating-point-number-string/
+#include<stdio.h>
+#include<stdint.h>
+#include<math.h>
+
+int main(void) {
+
+}

@@ -1,0 +1,15 @@
+14:54:25 **** Incremental Build of configuration Debug for project itoa ****
+make all 
+Building file: ../src/itoa.c
+Invoking: GCC C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/itoa.d" -MT"src/itoa.d" -o "src/itoa.o" "../src/itoa.c"
+Finished building: ../src/itoa.c
+ 
+Building target: itoa
+Invoking: MacOS X C Linker
+gcc  -o "itoa"  ./src/itoa.o   
+Finished building target: itoa
+ 
+
+14:54:26 Build Finished (took 996ms)
+
