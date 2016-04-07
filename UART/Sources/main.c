@@ -4,12 +4,14 @@
 #include <stdarg.h>
 #include <stdint.h>
 
+UART_MemMapPtr uartch = UART0_BASE_PTR;
+int sysclk = 24000;
+int baud = 115200;
 
 int main(void) {
 	register uint16_t sbr;
-	UART_MemMapPtr uartch = UART0_BASE_PTR;
-	int sysclk = 24000;
-	int baud = 115200;
+
+
 	uint8_t temp;
 
 	SIM_SCGC5 |= SIM_SCGC5_PORTA_MASK;
@@ -38,24 +40,42 @@ int main(void) {
     UART_BDH_REG(uartch) = temp |  UART_BDH_SBR(((sbr & 0x1F00) >> 8));
     UART_BDL_REG(uartch) = (uint8_t)(sbr & UART_BDL_SBR_MASK);
 
+    //enable the receiver transmitter interrupt
+    NVIC_EnableIRQ(UART0_IRQn);
+    UART_C2_REG(uartch) |= UART_C2_RIE_MASK;
+
     /* Enable receiver and transmitter */
     UART_C2_REG(uartch) |= (UART_C2_TE_MASK | UART_C2_RE_MASK );
 
     /* put char */
     /* Wait until space is available in the FIFO */
 
-    /* Send the character */
-    char ch[] = "Hello";
-    while(1){
-    	int length = sizeof(ch);
-    	for( int i = 0; i < length - 1; i++){
-    		while(!(UART_S1_REG(uartch) & UART_S1_TDRE_MASK));
-    		UART_D_REG(uartch) = (uint8_t)ch[i];
-    	}
+//    /* Send the character */
+//    char ch[] = "Hello";
+//    while(1){
+//    	int length = sizeof(ch);
+//    	for( int i = 0; i < length - 1; i++){
+//    		while(!(UART_S1_REG(uartch) & UART_S1_TDRE_MASK));
+//    		UART_D_REG(uartch) = (uint8_t)ch[i];
+//    	}
+//
+//    }
 
-    }
+    while(1);
 
 
+}
+
+void UART0_IRQHandler (void){
+	char c = 0;
+	if(UART_S1_REG(uartch) & UART_S1_RDRF_MASK){
+		c = UART_D_REG(uartch);
+		if ((UART_S1_REG(uartch) & UART_S1_TDRE_MASK)
+				||(UART_S1_REG(uartch) & UART_S1_TC_MASK)){
+			UART_D_REG(uartch) = (uint8_t)c;
+		}
+
+	}
 }
 
 
