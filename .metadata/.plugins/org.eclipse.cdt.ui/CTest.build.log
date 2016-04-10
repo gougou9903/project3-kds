@@ -1,52 +1,27 @@
-16:07:15 **** Build of configuration Debug for project CTest ****
+23:25:56 **** Incremental Build of configuration Debug for project CTest ****
 make all 
 Building file: ../src/CTest.c
 Invoking: GCC C Compiler
 gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/CTest.d" -MT"src/CTest.d" -o "src/CTest.o" "../src/CTest.c"
-../src/CTest.c:8:5: error: unknown type name 'int8_t'; did you mean '__int8_t'?
-    int8_t var1 __attribute__ ((aligned (8)));
-    ^~~~~~
-    __int8_t
-/usr/include/i386/_types.h:37:24: note: '__int8_t' declared here
-typedef __signed char           __int8_t;
-                                ^
-../src/CTest.c:9:5: error: unknown type name 'int32_t'; did you mean '__int32_t'?
-    int32_t var2 __attribute__ ((aligned (8)));
-    ^~~~~~~
-    __int32_t
-/usr/include/i386/_types.h:44:15: note: '__int32_t' declared here
-typedef int                     __int32_t;
-                                ^
-../src/CTest.c:10:5: error: unknown type name 'int8_t'; did you mean '__int8_t'?
-    int8_t var3 __attribute__ ((aligned (8)));
-    ^~~~~~
-    __int8_t
-/usr/include/i386/_types.h:37:24: note: '__int8_t' declared here
-typedef __signed char           __int8_t;
-                                ^
-../src/CTest.c:14:14: error: unknown type name 'int8_t'; did you mean '__int8_t'?
-static const int8_t conVar;
-             ^~~~~~
-             __int8_t
-/usr/include/i386/_types.h:37:24: note: '__int8_t' declared here
-typedef __signed char           __int8_t;
-                                ^
-../src/CTest.c:15:14: error: unknown type name 'int16_t'; did you mean '__int16_t'?
-static const int16_t conVar2 = 0;
-             ^~~~~~~
-             __int16_t
-/usr/include/i386/_types.h:42:17: note: '__int16_t' declared here
-typedef short                   __int16_t;
-                                ^
-../src/CTest.c:16:14: error: unknown type name 'int32_t'; did you mean '__int32_t'?
-static const int32_t conVar3 = 200;
-             ^~~~~~~
-             __int32_t
-/usr/include/i386/_types.h:44:15: note: '__int32_t' declared here
-typedef int                     __int32_t;
-                                ^
-6 errors generated.
-make: *** [src/CTest.o] Error 1
+../src/CTest.c:18:18: warning: implicitly declaring library function 'malloc' with type 'void *(unsigned long)'
+    cb->buffer = malloc(capacity * sz);
+                 ^
+../src/CTest.c:18:18: note: include the header <stdlib.h> or explicitly provide a declaration for 'malloc'
+../src/CTest.c:31:5: warning: implicit declaration of function 'free' is invalid in C99 [-Wimplicit-function-declaration]
+    free(cb->buffer);
+    ^
+../src/CTest.c:39:5: warning: implicitly declaring library function 'memcpy' with type 'void *(void *, const void *, unsigned long)'
+    memcpy(cb->head, item, cb->sz);
+    ^
+../src/CTest.c:39:5: note: include the header <string.h> or explicitly provide a declaration for 'memcpy'
+3 warnings generated.
+Finished building: ../src/CTest.c
+ 
+Building target: CTest
+Invoking: MacOS X C Linker
+gcc  -o "CTest"  ./src/CTest.o   
+Finished building target: CTest
+ 
 
-16:07:15 Build Finished (took 118ms)
+23:25:57 Build Finished (took 751ms)
 

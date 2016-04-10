@@ -1,0 +1,20 @@
+17:45:04 **** Incremental Build of configuration Debug for project a ****
+make all 
+Building file: ../src/a.c
+Invoking: GCC C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/a.d" -MT"src/a.d" -o "src/a.o" "../src/a.c"
+../src/a.c:27:15: warning: format specifies type 'char *' but the argument has type 'float' [-Wformat]
+        printf("%s", n);
+                ~~   ^
+                %f
+1 warning generated.
+Finished building: ../src/a.c
+ 
+Building target: a
+Invoking: MacOS X C Linker
+gcc  -o "a"  ./src/a.o ./src/ftoa.o ./src/utils.o   
+Finished building target: a
+ 
+
+17:45:04 Build Finished (took 190ms)
+

@@ -16,5 +16,45 @@ void LOG_0(uint8_t * str, size_t length){
 
 }
 
+void LOG_int8(uint8_t * str, size_t len, uint8_t *param, size_t param_len){
 
+	//print string
+	LOG_0(str, len);
+	//print int number
+	char number_str[param_len];
+	itoa(*param , number_str, 10);
+	uint8_t * param_ptr = number_str;
+	LOG_0(param_ptr, param_len);
+}
+
+void LOG_int16(uint8_t * str, size_t len, uint16_t *param, size_t param_len){
+
+	//print string
+	LOG_0(str, len);
+	//print int number
+	char number_str[param_len];
+	itoa(*param , number_str, 10);
+	uint8_t * param_ptr = number_str;
+	LOG_0(param_ptr, param_len);
+}
+
+void LOG_int32(uint8_t * str, size_t len, uint32_t *param, size_t param_len){
+
+	//print string
+	LOG_0(str, len);
+	//print int number
+	char number_str[param_len];
+	itoa(*param , number_str, 10);
+	uint8_t * param_ptr = number_str;
+	LOG_0(param_ptr, param_len);
+}
+void LOG_float(uint8_t * str, size_t len, float * param, size_t param_len){
+	//print string
+	LOG_0(str, len);
+	//print float number
+	char number_str[param_len];
+	ftoa(*param, number_str,4);
+	uint8_t * param_ptr = number_str;
+	LOG_0(param_ptr, param_len);
+}
 

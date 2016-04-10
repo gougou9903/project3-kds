@@ -5,6 +5,7 @@
  *      Author: HaoranFang
  */
 #include "uart.h"
+#include "debugConfig.h"
 
 void uart_init(UART_MemMapPtr uartch, int sysclk, int baud){
 
@@ -38,8 +39,10 @@ void uart_init(UART_MemMapPtr uartch, int sysclk, int baud){
 	UART_BDL_REG(uartch) = (uint8_t)(sbr & UART_BDL_SBR_MASK);
 
 	//enable the receiver transmitter interrupt
+#if DEBUG_MODE == DEBUG
 	NVIC_EnableIRQ(UART0_IRQn);
 	UART_C2_REG(uartch) |= UART_C2_RIE_MASK;
+#endif
 
 	/* Enable receiver and transmitter */
 	UART_C2_REG(uartch) |= (UART_C2_TE_MASK | UART_C2_RE_MASK );

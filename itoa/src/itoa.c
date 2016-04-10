@@ -5,17 +5,30 @@
 #include<math.h>
 
 char* itoa(int num,char*str,int radix);
+void test(int * n);
+
+typedef struct Circular_buffer
+{
+    void *buffer;     // data buffer
+    void *buffer_end; // end of data buffer
+    size_t capacity;  // maximum number of items in the buffer
+    size_t count;     // number of items in the buffer
+    size_t sz;        // size of each item in the buffer
+    void *head;       // pointer to head
+    void *tail;       // pointer to tail
+} Circular_buffer;
 
 int main(void) {
-//		int number = 123456;
-//		char string[25];
-//		itoa(number,string,10);
-//		printf("integer=%d string=%s\n",number,string);
-//		return 0;
 
-	char ch[] = "Hello";
-	int length = sizeof(ch);
-	printf("%d", length);
+	Circular_buffer cb;
+	Circular_buffer *ptr;
+	ptr->sz = 1;
+		return 0;
+
+}
+
+void test(int * n){
+	printf("%d", *n);
 }
 
 char* itoa(int num,char*str,int radix)

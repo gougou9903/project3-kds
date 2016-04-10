@@ -1,6 +1,15 @@
-16:07:15 **** Build of configuration Debug for project ftoa ****
+16:54:10 **** Incremental Build of configuration Debug for project ftoa ****
 make all 
-make: Nothing to be done for `all'.
+Building file: ../src/ftoa.c
+Invoking: GCC C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/ftoa.d" -MT"src/ftoa.d" -o "src/ftoa.o" "../src/ftoa.c"
+Finished building: ../src/ftoa.c
+ 
+Building target: ftoa
+Invoking: MacOS X C Linker
+gcc  -o "ftoa"  ./src/ftoa.o   
+Finished building target: ftoa
+ 
 
-16:07:15 Build Finished (took 77ms)
+16:54:10 Build Finished (took 130ms)
 

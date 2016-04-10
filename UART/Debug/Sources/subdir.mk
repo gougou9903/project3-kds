@@ -4,6 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Sources/buffer.c \
 ../Sources/ftoa.c \
 ../Sources/itoa.c \
 ../Sources/log.c \
@@ -11,6 +12,7 @@ C_SRCS += \
 ../Sources/uart.c 
 
 OBJS += \
+./Sources/buffer.o \
 ./Sources/ftoa.o \
 ./Sources/itoa.o \
 ./Sources/log.o \
@@ -18,6 +20,7 @@ OBJS += \
 ./Sources/uart.o 
 
 C_DEPS += \
+./Sources/buffer.d \
 ./Sources/ftoa.d \
 ./Sources/itoa.d \
 ./Sources/log.d \

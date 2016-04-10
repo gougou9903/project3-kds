@@ -9,10 +9,11 @@ int intToStr(int x, char str[], int d);
 void ftoa(float n, char *res, int afterpoint);
 
 int main(void) {
-	char res[20];
-	float n = 1.123456;
-	ftoa(n, res, 4);
-	printf("%s\n", res);
+	char res[12] = "asdfasdfasd";
+	float n = 1234567.123;
+	ftoa(n, res, 3);
+	char * buffer = res;
+	printf("%c", buffer[0]);
 	return 0;
 }
 
@@ -63,9 +64,10 @@ void ftoa(float n, char *res, int afterpoint)
 {
     // Extract integer part
     int ipart = (int)n;
-
+    printf("%f\n", n);
     // Extract floating part
     float fpart = n - (float)ipart;
+
     if(fpart < 0) fpart = -fpart;
     // convert integer part to string
     int i = intToStr(ipart, res, 0);
@@ -82,4 +84,35 @@ void ftoa(float n, char *res, int afterpoint)
 
         intToStr((int)fpart, res + i + 1, afterpoint);
     }
+}
+
+char* itoa(int num,char*str,int radix)
+{
+char index[]="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+unsigned unum;
+int i=0,j,k;
+
+if(radix==10&&num<0)
+{
+unum=(unsigned)-num;
+str[i++]='-';
+}
+else unum=(unsigned)num;
+
+do{
+str[i++]=index[unum % (unsigned)radix];
+unum/=radix;
+}while(unum);
+str[i]='\0';
+
+if(str[0]=='-')k=1;
+else k=0;
+char temp;
+for(j=k;j<=(i-1)/2;j++)
+{
+temp=str[j];
+str[j]=str[i-1+k-j];
+str[i-1+k-j]=temp;
+}
+return str;
 }
