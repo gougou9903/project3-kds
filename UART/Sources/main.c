@@ -46,11 +46,12 @@ int main(void) {
 
 
 //	LOG_int(ch_ptr, length, num_ptr, 4);
-	float number = 1543.321;
-	float * num_ptr = &number;
-	char ch[] = "This is a floating point number: ";
-	uint8_t *ch_ptr = ch;
-	LOG_float(ch_ptr, sizeof(ch), num_ptr, 12);
+
+//	float number = 1543.321;
+//	float * num_ptr = &number;
+//	char ch[] = "This is a floating point number: ";
+//	uint8_t *ch_ptr = ch;
+//	LOG_float(ch_ptr, sizeof(ch), num_ptr, 12);
 
 /* receive buffer test code */
 //	while(1){
@@ -70,77 +71,72 @@ int main(void) {
 /*unit test code for circular buffer*/
 
 
-//	if(full(rec_buff) == 1){
-//		char test[] = "CB UNIT TEST 1 -- full test -- PASS   ";
-//		LOG_0(test, sizeof(test));
-//	}else{
-//		char test[] = "CB UNIT TEST 1 -- full test -- FAIL   ";
-//		LOG_0(test, sizeof(test));
-//	}
-//
-//	CircBuf_free(rec_buff);
-//	CircBuf_init(rec_buff, 10, 1);
-//
-//	if(empty(rec_buff) == 1){
-//		char test[] = "CB UNIT TEST 2 -- empty test -- PASS   ";
-//		LOG_0(test, sizeof(test));
-//	}else{
-//		char test[] = "CB UNIT TEST 2 -- empty test -- FAIL   ";
-//		LOG_0(test, sizeof(test));
-//	}
-//
-//	CircBuf_free(rec_buff);
-//	CircBuf_init(rec_buff, 10, 1);
-//
-//	if(head_edge(rec_buff) == 1){
-//		char test[] = "CB UNIT TEST 3 -- head_edge test -- PASS   ";
-//		LOG_0(test, sizeof(test));
-//	}else{
-//		char test[] = "CB UNIT TEST 3 -- head_edge test -- FAIL   ";
-//		LOG_0(test, sizeof(test));
-//	}
-//
-//	CircBuf_free(rec_buff);
-//	CircBuf_init(rec_buff, 10, 1);
-//
-//	if(tail_edge(rec_buff) == 1){
-//		char test[] = "CB UNIT TEST 3 -- tail_edge test -- PASS   ";
-//		LOG_0(test, sizeof(test));
-//	}else{
-//		char test[] = "CB UNIT TEST 3 -- tail_edge test -- FAIL   ";
-//		LOG_0(test, sizeof(test));
-//	}
-//
-//	CircBuf_free(rec_buff);
-//	CircBuf_init(rec_buff, 10, 1);
-//
-//	if(head_inc(rec_buff) == 1){
-//		char test[] = "CB UNIT TEST 3 -- head_inc test -- PASS   ";
-//		LOG_0(test, sizeof(test));
-//	}else{
-//		char test[] = "CB UNIT TEST 3 -- head_inc test -- FAIL   ";
-//		LOG_0(test, sizeof(test));
-//	}
-//
-//	CircBuf_free(rec_buff);
-//	CircBuf_init(rec_buff, 10, 1);
-//
-//	if(tail_inc(rec_buff) == 1){
-//		char test[] = "CB UNIT TEST 3 -- tail_inc test -- PASS   ";
-//		LOG_0(test, sizeof(test));
-//	}else{
-//		char test[] = "CB UNIT TEST 3 -- tail_inc test -- FAIL   ";
-//		LOG_0(test, sizeof(test));
-//	}
-//
-//	CircBuf_free(rec_buff);
-//	CircBuf_init(rec_buff, 10, 1);
-//	char c = 'a';
-//	char *item = &c;
-//	CircBuf_push(rec_buff, item);
-//
-//	uint8_t diff = rec_buff->head - rec_buff->buffer;
-//	LOG_char(&diff);
+	if(full(rec_buff) == 1){
+		char test[] = "CB UNIT TEST 1 -- full test -- PASS   ";
+		LOG_0(test, sizeof(test));
+	}else{
+		char test[] = "CB UNIT TEST 1 -- full test -- FAIL   ";
+		LOG_0(test, sizeof(test));
+	}
+
+	CircBuf_free(rec_buff);
+	CircBuf_init(rec_buff, 10, 1);
+
+	if(empty(rec_buff) == 1){
+		char test[] = "CB UNIT TEST 2 -- empty test -- PASS   ";
+		LOG_0(test, sizeof(test));
+	}else{
+		char test[] = "CB UNIT TEST 2 -- empty test -- FAIL   ";
+		LOG_0(test, sizeof(test));
+	}
+
+	CircBuf_free(rec_buff);
+	CircBuf_init(rec_buff, 10, 1);
+
+	if(head_edge(rec_buff) == 1){
+		char test[] = "CB UNIT TEST 3 -- head_edge test -- PASS   ";
+		LOG_0(test, sizeof(test));
+	}else{
+		char test[] = "CB UNIT TEST 3 -- head_edge test -- FAIL   ";
+		LOG_0(test, sizeof(test));
+	}
+
+	CircBuf_free(rec_buff);
+	CircBuf_init(rec_buff, 10, 1);
+
+	if(tail_edge(rec_buff) == 1){
+		char test[] = "CB UNIT TEST 3 -- tail_edge test -- PASS   ";
+		LOG_0(test, sizeof(test));
+	}else{
+		char test[] = "CB UNIT TEST 3 -- tail_edge test -- FAIL   ";
+		LOG_0(test, sizeof(test));
+	}
+
+	CircBuf_free(rec_buff);
+	CircBuf_init(rec_buff, 10, 1);
+
+	if(head_inc(rec_buff) == 1){
+		char test[] = "CB UNIT TEST 3 -- head_inc test -- PASS   ";
+		LOG_0(test, sizeof(test));
+	}else{
+		char test[] = "CB UNIT TEST 3 -- head_inc test -- FAIL   ";
+		LOG_0(test, sizeof(test));
+	}
+
+	CircBuf_free(rec_buff);
+	CircBuf_init(rec_buff, 10, 1);
+
+	if(tail_inc(rec_buff) == 1){
+		char test[] = "CB UNIT TEST 3 -- tail_inc test -- PASS   ";
+		LOG_0(test, sizeof(test));
+	}else{
+		char test[] = "CB UNIT TEST 3 -- tail_inc test -- FAIL   ";
+		LOG_0(test, sizeof(test));
+	}
+
+	CircBuf_free(rec_buff);
+	CircBuf_init(rec_buff, 10, 1);
+
 
 #endif
 
