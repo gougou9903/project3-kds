@@ -20,8 +20,8 @@ typedef struct Circular_buffer
 
 int main(void) {
 
-	Circular_buffer cb;
-	Circular_buffer *ptr;
+
+	Circular_buffer *ptr = malloc(5*1);
 	ptr->sz = 1;
 		return 0;
 

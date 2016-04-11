@@ -1,20 +1,10 @@
-/*
- * ftoa.h
- *
- *  Created on: Apr 7, 2016
- *      Author: HaoranFang
- */
+#ifndef FTOA_H_
+#define FTOA_H_
 
-#ifndef INCLUDES_FTOA_H_
-#define INCLUDES_FTOA_H_
+#define _FTOA_TOO_LARGE 1
+#define _FTOA_TOO_SMALL 2
+#define BUFFER_MAX 30
 
-#include<stdio.h>
-#include<stdint.h>
-#include<math.h>
+char *ftoa_(float f, char outbuf[]);
 
-void reverse(char *str, int len);
-int intToStr(int x, char str[], int d);
-void ftoa(float n, char *res, int afterpoint);
-void ftoa(float n, char *res, int afterpoint);
-
-#endif /* INCLUDES_FTOA_H_ */
+#endif // FTOA_H_

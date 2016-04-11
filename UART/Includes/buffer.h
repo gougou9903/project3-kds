@@ -10,6 +10,7 @@
 
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdarg.h>
 #include <stdint.h>
 
@@ -26,5 +27,6 @@ typedef struct CircBuf {
 void CircBuf_init(CircBuf_t *cb, size_t size, size_t item_size);
 int CircBuf_push(CircBuf_t *cb, const void *item);
 int CircBuf_pop(CircBuf_t *cb, void * return_item);
+void CircBuf_free(CircBuf_t *cb);
 
 #endif /* INCLUDES_BUFFER_H_ */

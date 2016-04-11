@@ -1,74 +1,106 @@
-//reference :
-//http://www.geeksforgeeks.org/convert-floating-point-number-string/
-#include<stdio.h>
-#include<stdint.h>
-#include<math.h>
-#include<ftoa.h>
+/*
+ * ftoa.c
+ reference : bogger33/homebrewcomp on github
+ url : https://github.com/bogger33/homebrewcomp
+ */
 
-// reverses a string 'str' of length 'len'
-void reverse(char *str, int len)
-{
-	int i = 0;
-	if(str[0] == '-') i = 1;
-    int j=len-1, temp;
-    while (i<j)
-    {
-        temp = str[i];
-        str[i] = str[j];
-        str[j] = temp;
-        i++; j--;
-    }
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+#include "ftoa.h"
+#include "utils.h"
+
+#pragma codeseg _CODE2
+
+/******************************************************************************/
+
+typedef union {
+	long	L;
+	float	F;
+} LF_t;
+
+/******************************************************************************/
+char *ftoa_(float f, char outbuf[]) {
+	long mantissa, int_part, frac_part;
+	short exp2;
+	LF_t x;
+	char *p;
+
+//	if (f < 0.0000001) {
+//		outbuf[0] = '0';
+//		outbuf[1] = '.';
+//		outbuf[2] = '0';
+//		outbuf[3] = 0;
+//		return outbuf;
+//	}
+
+	f += 0.0000005;
+
+	x.F = f;
+
+	exp2 = (unsigned char)(x.L >> 23) - 127;
+	mantissa = (x.L & 0xFFFFFF) | 0x800000;
+	frac_part = 0;
+	int_part = 0;
+
+	if (exp2 >= 31) {
+		outbuf[0] = '#';
+		outbuf[1] = 0;
+		return 0;
+	} else if (exp2 < -23) {
+		outbuf[0] = '#';
+		outbuf[1] = 0;
+		return 0;
+	} else if (exp2 >= 23)
+		int_part = mantissa << (exp2 - 23);
+	else if (exp2 >= 0) {
+		int_part = mantissa >> (23 - exp2);
+		frac_part = (mantissa << (exp2 + 1)) & 0xFFFFFF;
+	} else /* if (exp2 < 0) */
+		frac_part = (mantissa & 0xFFFFFF) >> -(exp2 + 1);
+
+	p = outbuf;
+
+	if (x.L < 0)
+		*p++ = '-';
+
+	if (int_part == 0)
+		*p++ = '0';
+	else {
+		ltoa_(int_part, p);
+		while (*p)
+			p++;
+	}
+	*p++ = '.';
+
+	if (frac_part == 0)
+		*p++ = '0';
+	else {
+		char m, max;
+
+		max = BUFFER_MAX - (p - outbuf) - 1;
+		if (max > 6)
+			max = 6;
+		/* print BCD */
+		for (m = 0; m < max; m++) {
+			/* frac_part *= 10;	*/
+			frac_part = (frac_part << 3) + (frac_part << 1);
+
+			*p++ = (frac_part >> 24) + '0';
+			frac_part &= 0xFFFFFF;
+		}
+		/* delete ending zeroes */
+		for (--p; *p == '0' && *(p - 1) != '.'; --p);
+		++p;
+	}
+	*p = 0;
+
+	return outbuf;
 }
+/******************************************************************************/
 
-// Converts a given integer x to string str[].  d is the number
-// of digits required in output. If d is more than the number
-// of digits in x, then 0s are added at the beginning.
-int intToStr(int x, char str[], int d)
-{
-	int unum = x;
-   int i = 0;
-   if(x < 0){
-	   str[i++] = '-';
-	   unum = -x;
-   }
-   while (unum)
-   {
-       str[i++] = (unum%10) + '0';
-       unum = unum/10;
-   }
 
-   // If number of digits required is more, then
-   // add 0s at the beginning
-   while (i < d)
-       str[i++] = '0';
 
-   reverse(str, i);
-   str[i] = '\0'; //i == length
-   return i;
-}
 
-// Converts a floating point number to string.
-void ftoa(float n, char *res, int afterpoint)
-{
-    // Extract integer part
-    int ipart = (int)n;
-
-    // Extract floating part
-    float fpart = n - (float)ipart;
-    if(fpart < 0) fpart = -fpart;
-    // convert integer part to string
-    int i = intToStr(ipart, res, 0);
-
-    // check for display option after point
-    if (afterpoint != 0)
-    {
-        res[i] = '.';  // add dot
-
-        // Get the value of fraction part upto given no.
-        // of points after dot. The third parameter is needed
-        // to handle cases like 233.007
-        fpart = fpart * pow(10, afterpoint);
-
-        intToStr((int)fpart, res + i + 1, afterpoint);
-    }
-}

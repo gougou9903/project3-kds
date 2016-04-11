@@ -9,7 +9,9 @@ C_SRCS += \
 ../Sources/itoa.c \
 ../Sources/log.c \
 ../Sources/main.c \
-../Sources/uart.c 
+../Sources/uart.c \
+../Sources/unit_test.c \
+../Sources/utils.c 
 
 OBJS += \
 ./Sources/buffer.o \
@@ -17,7 +19,9 @@ OBJS += \
 ./Sources/itoa.o \
 ./Sources/log.o \
 ./Sources/main.o \
-./Sources/uart.o 
+./Sources/uart.o \
+./Sources/unit_test.o \
+./Sources/utils.o 
 
 C_DEPS += \
 ./Sources/buffer.d \
@@ -25,7 +29,9 @@ C_DEPS += \
 ./Sources/itoa.d \
 ./Sources/log.d \
 ./Sources/main.d \
-./Sources/uart.d 
+./Sources/uart.d \
+./Sources/unit_test.d \
+./Sources/utils.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

@@ -1,3 +1,28 @@
-01:18:13 **** Incremental Build of configuration Debug for project itoa ****
+13:34:02 **** Incremental Build of configuration Debug for project buffer ****
+make all 
+make: Nothing to be done for `all'.
+20:29:18 **** Incremental Build of configuration Debug for project buffer ****
+make all 
+Building file: ../src/buffer.c
+Invoking: GCC C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/buffer.d" -MT"src/buffer.d" -o "src/buffer.o" "../src/buffer.c"
+../src/buffer.c:57:17: warning: format specifies type 'int' but the argument has type 'void *' [-Wformat]
+        printf("%d\n", rec_buff->head);
+                ~~     ^~~~~~~~~~~~~~
+../src/buffer.c:58:17: warning: format specifies type 'int' but the argument has type 'void *' [-Wformat]
+        printf("%d\n", rec_buff->buffer);
+                ~~     ^~~~~~~~~~~~~~~~
+2 warnings generated.
+Finished building: ../src/buffer.c
+ 
+Building target: buffer
+Invoking: MacOS X C Linker
+gcc  -o "buffer"  ./src/buffer.o   
+Finished building target: buffer
+ 
+20:29:20 **** Incremental Build of configuration Debug for project buffer ****
+make all 
+make: Nothing to be done for `all'.
+20:34:07 **** Incremental Build of configuration Debug for project buffer ****
 make all 
 make: Nothing to be done for `all'.

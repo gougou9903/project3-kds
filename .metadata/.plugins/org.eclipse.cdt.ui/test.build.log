@@ -1,0 +1,30 @@
+11:45:53 **** Incremental Build of configuration Debug for project test ****
+make all 
+Building file: ../src/test.c
+Invoking: GCC C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/test.d" -MT"src/test.d" -o "src/test.o" "../src/test.c"
+../src/test.c:70:17: warning: format specifies type 'int' but the argument has type 'void *' [-Wformat]
+        printf("%d\n", cb->buffer);
+                ~~     ^~~~~~~~~~
+../src/test.c:71:17: warning: format specifies type 'int' but the argument has type 'long' [-Wformat]
+        printf("%d\n", cb->buffer_end - cb->buffer);
+                ~~     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+                %ld
+../src/test.c:69:10: warning: variable 'cb' is uninitialized when used here [-Wuninitialized]
+        cb_init(cb, 10, 1);
+                ^~
+../src/test.c:68:21: note: initialize the variable 'cb' to silence this warning
+        circular_buffer *cb;
+                           ^
+                            = NULL
+3 warnings generated.
+Finished building: ../src/test.c
+ 
+Building target: test
+Invoking: MacOS X C Linker
+gcc  -o "test"  ./src/test.o   
+Finished building target: test
+ 
+
+11:45:53 Build Finished (took 183ms)
+

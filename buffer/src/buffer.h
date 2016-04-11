@@ -1,0 +1,31 @@
+/*
+ * buffer.h
+ *
+ *  Created on: Apr 10, 2016
+ *      Author: HaoranFang
+ */
+
+#ifndef BUFFER_H_
+#define BUFFER_H_
+
+#include <string.h>
+#include <stdio.h>
+#include <stdarg.h>
+#include <stdint.h>
+#include <stdlib.h>
+
+typedef struct CircBuf {
+	void * buffer;	// data buffer
+	void * buffer_end; // end of the buffer
+	void * head;	// head
+	void * tail;	// tail
+	size_t size;	// Size of the buffer
+	size_t item_size;	// Size of each item (bytes)
+	size_t num_items;	// Current number of items
+} CircBuf_t;
+
+void CircBuf_init(CircBuf_t *cb, size_t size, size_t item_size);
+int CircBuf_push(CircBuf_t *cb, const void *item);
+int CircBuf_pop(CircBuf_t *cb, void * return_item);
+
+#endif /* BUFFER_H_ */

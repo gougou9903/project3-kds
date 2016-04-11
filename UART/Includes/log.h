@@ -16,6 +16,7 @@
 #include "ftoa.h"
 #include "itoa.h"
 
+void LOG_char(uint8_t * ch);
 void LOG_0(uint8_t * str, size_t length);
 void LOG_int8(uint8_t * str, size_t len, uint8_t *param, size_t param_len);
 void LOG_int16(uint8_t * str, size_t len, uint16_t *param, size_t param_len);

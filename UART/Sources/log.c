@@ -6,6 +6,13 @@
  */
 #include "log.h"
 
+//log a single char
+void LOG_char(uint8_t * ch){
+	while(!(UART_S1_REG(UART0_BASE_PTR) & UART_S1_TDRE_MASK));
+	UART_D_REG(UART0_BASE_PTR) = (uint8_t)*(ch);
+}
+
+//log string
 void LOG_0(uint8_t * str, size_t length){
 	/* Send characters */
 
@@ -53,7 +60,7 @@ void LOG_float(uint8_t * str, size_t len, float * param, size_t param_len){
 	LOG_0(str, len);
 	//print float number
 	char number_str[param_len];
-	ftoa(*param, number_str,4);
+	ftoa_(*param, number_str);
 	uint8_t * param_ptr = number_str;
 	LOG_0(param_ptr, param_len);
 }
